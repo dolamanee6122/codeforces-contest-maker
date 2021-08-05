@@ -41,6 +41,7 @@ URL_START = "https://codeforces.com/api/"
 def checkSolvedByUser(que, userHandle):
     contestId = str(que["contestId"])
     index = que["index"]
+    name = que["name"]
     urlForSubmission = (
         URL_START
         + "contest.status?contestId="
@@ -56,7 +57,7 @@ def checkSolvedByUser(que, userHandle):
         submissionList = submissionList["result"]
         for submission in submissionList:
             problem = submission["problem"]
-            if problem["index"] == index and submission["verdict"] == "OK":
+            if problem["name"] == name and submission["verdict"] == "OK":
                 return True
     return False
 
